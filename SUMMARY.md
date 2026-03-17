@@ -7,8 +7,8 @@
 
 ## Whitepaper
 
-* [Technical Whitepaper (EN)](whitepaper/technical-whitepaper-en.md)
-* [Technical Whitepaper (CN)](whitepaper/technical-whitepaper-cn.md)
+* [Technical Whitepaper](whitepaper/technical-whitepaper-en.md)
+* [PDF Downloads](whitepaper/pdf-downloads.md)
 
 ## Getting Started
 
