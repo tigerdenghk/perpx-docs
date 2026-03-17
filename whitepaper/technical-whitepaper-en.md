@@ -1,4 +1,4 @@
-# PerpX Finance Technical White Paper v2.0
+# PerpX Finance Technical White Paper v1.0
 
 **Perpetual Economy, Infinite Expansion**
 
@@ -52,7 +52,7 @@
    - 8.1 [Dual-Token Model Design Philosophy](#81-dual-token-model-design-philosophy)
    - 8.2 [$PPX Governance Token Mechanism](#82-ppx-governance-token-mechanism)
    - 8.3 [$esPPX Escrowed Incentive Token](#83-esppx-escrowed-incentive-token)
-   - 8.4 [Floor Price Guarantee Mechanism: Mathematical Model](#84-floor-price-guarantee-mechanism-mathematical-model)
+   - 8.4 [Ecosystem Security Fund Mechanism: Mathematical Model](#84-ecosystem-security-fund-mechanism-mathematical-model)
    - 8.5 [Staking and Unlock State Machine](#85-staking-and-unlock-state-machine)
    - 8.6 [Deflation and Value Capture](#86-deflation-and-value-capture)
    - 8.7 [Game Theory Analysis and Nash Equilibrium](#87-game-theory-analysis-and-nash-equilibrium)
@@ -74,7 +74,7 @@ PerpX Finance proposes the **TradeFi (Trade + DeFi + AI)** paradigm, dedicated t
 | Unified Liquidity Vault            | Multi-asset hybrid vault + dynamic weight rebalancing      | Eliminates liquidity fragmentation, 3-5x improvement in capital efficiency |
 | Multi-Source Oracle Aggregation     | Pyth + Chainlink dual-source cross-validation + TWAP anti-manipulation | Sub-second price updates, price deviation protection                     |
 | Adaptive Funding Rate              | Exponential decay model based on OI skew                   | Auto-balances long/short, reduces vault directional risk                 |
-| esPPX Floor Price Anchoring        | Fixed floor price ladder + floating floor nonlinear curve  | Each PPX has a minimum value backed by protocol revenue                  |
+| esPPX Ecosystem Security Fund Anchoring | Fixed floor price ladder + floating floor nonlinear curve  | Each PPX has a fundamental value backed by protocol revenue              |
 | State Channel Settlement           | Off-chain matching + on-chain settlement hybrid architecture | TPS 5,000+, 40% reduction in Gas costs                                  |
 | Multi-Chain Failover Switching     | Primary/backup chain auto-detection and hot switching      | System availability 99.999%                                              |
 | **AI Intelligence Engine**    |                                                            |                                                                          |
@@ -352,7 +352,7 @@ def payfi_payment(user, amount):
 | Trading Parameters | Fee rates, maximum leverage, spread coefficients   | Single adjustment ≤ 20%                  |
 | Vault Parameters   | Asset weight upper/lower bounds, risk aversion coefficient λ | Requires 67% vote approval               |
 | Token Parameters   | esPPX unlock parameters k/m, phase transition conditions | Requires 75% vote approval               |
-| Asset Listing      | New trading pair addition, risky asset delisting    | Requires valid oracle + 51% vote approval |
+| Asset Listing      | New trading pair addition, risky asset delisting    | Requires valid oracle + security audit + 51% vote approval |
 
 **Compliance Module:**
 
@@ -1509,7 +1509,7 @@ contract CircuitBreaker {
 
 Core design principles of PerpX token economics:
 
-1. **Every PPX has a floor price guarantee** — All PPX are converted from esPPX through contract unlocking. The unlock process requires paying a Fund Guarantee Fee, ensuring every PPX has a minimum value backed by protocol revenue.
+1. **Every PPX is backed by the Ecosystem Security Fund** — All PPX are converted from esPPX through contract unlocking. The unlock process requires paying an Ecosystem Security Fund fee, ensuring every PPX has a fundamental value backed by protocol revenue.
 2. **Dynamic balance between inflation and deflation** — During value growth periods, moderate esPPX release incentivizes ecosystem expansion; during active trading periods, fee-funded buyback and burn achieves deflation.
 3. **Incentive compatibility** — The individually optimal behavior of each participant role (traders, LPs, stakers, community) happens to benefit the overall system.
 
@@ -1537,10 +1537,9 @@ Core design principles of PerpX token economics:
 
 | Category | Share | Amount | Release Rules |
 | -------- | ----- | ------ | ------------- |
-| Community incentives | 50% | 50,000,000 | Quarterly linear release for trading rewards, LP incentives, referral system |
-| Investors | 20% | 20,000,000 | IDO 5% (3-month linear release after TGE); Private sale 15% (1-year lock then 1-year linear release) |
-| Ecosystem fund | 20% | 20,000,000 | Quarterly linear release for ecosystem development and strategic partnerships |
-| Team & advisors | 5% | 5,000,000 | 1-year lock followed by 6-month linear release |
+| Community | 60% | 60,000,000 | Quarterly linear release for trading rewards, LP incentives, referral system |
+| Ecosystem fund | 30% | 30,000,000 | Quarterly linear release for ecosystem development and strategic partnerships |
+| Team | 5% | 5,000,000 | 1-year lock followed by 6-month linear release |
 | Initial liquidity | 5% | 5,000,000 | 1% released at TGE, then +1% released for every 5% price increase |
 
 **Issuance Price:** 1 USD
@@ -1558,17 +1557,17 @@ Core design principles of PerpX token economics:
 
 **Core Rules:** All tokens are first released as esPPX, then converted to PPX through contract unlocking.
 
-esPPX is not freely transferable but carries full PPX voting rights within the protocol. To sell or transfer, holders must pay the "Fund Guarantee Fee" through the unlock contract to convert to PPX.
+esPPX is not freely transferable but carries full PPX voting rights within the protocol. To sell or transfer, holders must pay the "Ecosystem Security Fund" fee through the unlock contract to convert to PPX.
 
 **Unlock Conversion Formula:**
 
 $$
-\boxed{\text{esPPX} + \text{Fund Guarantee Fee (USDC)} = \text{PPX}}
+\boxed{\text{esPPX} + \text{Ecosystem Security Fund (USDC)} = \text{PPX}}
 $$
 
-The Fund Guarantee Fee is the floor price $F$, with calculation details in Section 8.4.
+The Ecosystem Security Fund fee equals the floor price $F$, with calculation details in Section 8.4.
 
-### 8.4 Floor Price Guarantee Mechanism: Mathematical Model
+### 8.4 Ecosystem Security Fund Mechanism: Mathematical Model
 
 The floor price consists of a fixed component and a floating component:
 
@@ -1581,7 +1580,7 @@ $$
 The fixed floor price increases in tiers as PPX circulating supply grows:
 
 $$
-F_b = 0.001 \times \left\lceil \frac{\text{PPX Circulating Supply}}{1{,}000{,}000} \right\rceil \quad (\text{USDT})
+F_b = 0.001 \times \left\lceil \frac{\text{PPX Circulating Supply}}{1{,}000{,}000} \right\rceil \quad (\text{USDC})
 $$
 
 | PPX Circulating Supply | Period | Fixed Floor Price $F_b$ |
@@ -1601,7 +1600,7 @@ The floating floor price activates after the protocol matures and is dynamically
 **Activation Conditions (any one met):**
 
 - PPX circulating supply > 10,000,000 tokens
-- Daily protocol fee revenue > 10,000 USDT
+- Daily protocol fee revenue > 10,000 USDC
 
 **Floating Floor Price Formula:**
 
@@ -1627,8 +1626,8 @@ Parameter descriptions:
 
 - $Q_a$: Actual unlock volume (based on the amount of PPX users confirm to unlock)
 - $Q_s$: Recommended unlock volume
-- $k \in [1.5, 3]$: Controls growth magnitude (configurable via backend)
-- $m \in [1.8, 2.5]$: Controls acceleration rate (configurable via backend)
+- $k \in [1.5, 3]$: Controls growth magnitude (adjustable via governance vote)
+- $m \in [1.8, 2.5]$: Controls acceleration rate (adjustable via governance vote)
 
 **Recommended Unlock Volume $Q_s$ Calculation:**
 
@@ -1669,7 +1668,7 @@ $$
 
 **$P$ (Personal Activity Coefficient):**
 
-Related to the individual wallet's cumulative unlock volume and daily unlock proportion, default value $P = 1$. Can be independently configured via backend based on individual behavior.
+Related to the individual wallet's cumulative unlock volume and daily unlock proportion, default value $P = 1$.
 
 ### 8.5 Staking and Unlock State Machine
 
@@ -1697,13 +1696,13 @@ Early exit penalty:
 | -------- | ----- | ------------------ |
 | 0:00 - 23:00 | Free period | Freely deposit esPPX to unlock queue + freely withdraw |
 | 23:00 - 0:00 | Whitelist period | Only whitelisted addresses can deposit/withdraw; regular users cannot operate |
-| 0:00 (next day) | Settlement & claim | System completes settlement; users pay USDC (floor price) to claim PPX |
+| 0:00 (next day) | Settlement & claim | System completes settlement; users pay USDC (Ecosystem Security Fund) to claim PPX |
 
 **Key Rules:**
 
 - Before 23:00, users can freely deposit and withdraw, flexibly managing the amount of esPPX in the unlock queue;
 - 23:00 - 0:00 is the whitelist window; only authorized addresses can operate, preventing abnormal operations before settlement;
-- After settlement completes at 0:00, users can immediately pay the corresponding USDC (floor price) to claim unlocked PPX;
+- After settlement completes at 0:00, users can immediately pay the corresponding USDC (Ecosystem Security Fund) to claim unlocked PPX;
 - If users do not claim, the esPPX will be permanently locked in the unlock contract and cannot be returned. Users can claim multiple days' accumulated unlocked PPX in a single transaction at any time.
 
 ### 8.6 Deflation and Value Capture
@@ -1730,12 +1729,6 @@ $$
 \text{Annual Burn Volume} = V \times f \times b \times 365
 $$
 
-For example: average daily trading volume of $10$ million USDC, fee rate of $0.1\%$, buyback-and-burn ratio of $10\%$:
-
-$$
-\text{Annual Burn Volume} = 10{,}000{,}000 \times 0.001 \times 0.1 \times 365 = 365{,}000 \text{ PPX}
-$$
-
 As trading volume grows, the burn rate accelerates, eventually pushing the circulating supply into a net deflationary state.
 
 ### 8.7 Game Theory Analysis and Nash Equilibrium
@@ -1749,7 +1742,7 @@ Equilibrium analysis of the PerpX economic model:
 | Trader | Long / Short / Wait | PnL - fees - funding fee + trading rewards (esPPX) |
 | LP | Provide / Withdraw liquidity | Fee share + trader net losses + esPPX - impermanent risk |
 | PPX staker | Stake / Unstake | Fee share + esPPX yield - lock-up opportunity cost |
-| esPPX holder | Unlock / Hold | PPX market price - floor price (F) - time cost |
+| esPPX holder | Unlock / Hold | PPX market price - Ecosystem Security Fund (F) - time cost |
 
 **Nash Equilibrium Proof:**
 
@@ -1876,7 +1869,7 @@ PerpX Finance, through the **TradeFi (Trade + DeFi + AI)** paradigm, extends the
 
 AI is not an add-on layered on top of blockchain, but the protocol's **core intelligence hub** — giving static on-chain contracts the dynamic ability to perceive markets, predict risks, and optimize resources.
 
-**At the economic model level**, the PPX/esPPX dual-token system ensures every token has a minimum value backed by protocol revenue through the floor price guarantee mechanism (fixed floor price tiers + floating floor price nonlinear curve); the dynamic deflationary mechanism of fee-funded buyback and burn positively binds trading activity to token scarcity; the incentive-compatible game design causes the system to spontaneously converge to Nash equilibrium under the rational participant assumption.
+**At the economic model level**, the PPX/esPPX dual-token system ensures every token has a fundamental value backed by protocol revenue through the Ecosystem Security Fund mechanism (fixed floor price tiers + floating floor price nonlinear curve); the dynamic deflationary mechanism of fee-funded buyback and burn positively binds trading activity to token scarcity; the incentive-compatible game design causes the system to spontaneously converge to Nash equilibrium under the rational participant assumption.
 
 **At the trading experience level**, 24/7 non-stop operation, full-category asset one-stop trading, AI-driven intelligent pricing bringing trading costs as low as 0.01%, TVM yield capture pushing effective costs toward zero or even negative, and AI Agent enabling zero-experience users to easily participate — truly achieving **"Trade to Earn, Everyone Can Participate."**
 

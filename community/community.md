@@ -14,7 +14,7 @@ Our main community hub for real-time discussion, announcements, and support.
 
 Follow us for the latest updates, product launches, and ecosystem news.
 
-[Follow on X](https://x.com/perpx_io)
+[Follow on X](https://x.com/perpx_x)
 
 ### Medium
 

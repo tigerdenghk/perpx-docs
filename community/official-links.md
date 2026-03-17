@@ -10,9 +10,15 @@
 
 | Platform | Link |
 | --- | --- |
-| X (Twitter) | [https://x.com/perpx_io](https://x.com/perpx_io) |
+| X (Twitter) | [https://x.com/perpx_x](https://x.com/perpx_x) |
 | Medium | [https://medium.com/@perpx_io](https://medium.com/@perpx_io) |
 | Telegram Group | [https://t.me/perpxtradefi](https://t.me/perpxtradefi) |
+
+## Resources
+
+| | Link |
+| --- | --- |
+| GitHub | [https://github.com/perpx-io](https://github.com/perpx-io) |
 
 ## Support
 
