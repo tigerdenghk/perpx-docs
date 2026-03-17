@@ -25,6 +25,7 @@
 | | Contact |
 | --- | --- |
 | Community Support (TG) | [@ppxpenguin](https://t.me/ppxpenguin) |
+| Email | [support@perpx.io](mailto:support@perpx.io) |
 
 ---
 

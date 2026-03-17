@@ -26,6 +26,8 @@ In-depth articles, tutorials, and protocol research.
 
 Reach out to our community support on Telegram: [@ppxpenguin](https://t.me/ppxpenguin)
 
+Or email us at: [support@perpx.io](mailto:support@perpx.io)
+
 ## Community Guidelines
 
 1. **Be respectful** — Treat all members with courtesy
