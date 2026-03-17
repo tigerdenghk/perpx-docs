@@ -1,5 +1,23 @@
 # Brand Kit
 
+## Logo
+
+**Icon Mark:**
+
+![PerpX Logo Icon](../assets/brand/logo-icon@2x.png)
+
+**Full Logo (Dark Background):**
+
+![PerpX Full Logo](../assets/brand/logo-full-dark.png)
+
+### Logo Files
+
+| Variant | File | Usage |
+| --- | --- | --- |
+| Icon | `logo-icon.png` | Favicons, app icons, small spaces |
+| Icon @2x | `logo-icon@2x.png` | Retina / high-DPI displays |
+| Full Logo (Dark BG) | `logo-full-dark.png` | Headers, dark backgrounds |
+
 ## Name
 
 **PerpX Finance** (also written as **PerpX**)
