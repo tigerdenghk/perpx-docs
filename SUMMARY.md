@@ -3,7 +3,6 @@
 ## Welcome
 
 * [Introduction](README.md)
-* [Brand Kit](welcome/brand-kit.md)
 
 ## Whitepaper
 
@@ -19,6 +18,7 @@
 
 * [Official Links](community/official-links.md)
 * [Community](community/community.md)
+* [Brand Kit](welcome/brand-kit.md)
 
 ## Legal
 
