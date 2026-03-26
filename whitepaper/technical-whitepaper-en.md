@@ -1,6 +1,18 @@
-# PerpX Finance Technical White Paper v1.0
+# PerpX Finance Technical White Paper v1.1
 
 **Perpetual Economy, Infinite Expansion**
+
+---
+
+> **Important Notice**
+>
+> This white paper is a technical documentation intended to describe the protocol design, technical architecture, and economic model of PerpX Finance. Please note the following before reading:
+>
+> 1. **Project Stage:** The PerpX Finance protocol architecture has been completed and is currently in the invite-only testnet testing and community discussion phase. The mainnet has not yet launched.
+> 2. **Data Disclaimer:** All figures related to pricing, fee rates, funding rates, leverage parameters, yield rates, AI model performance metrics, and economic model parameters presented in this white paper are **illustrative only** for technical explanation purposes. They do not represent finalized mainnet parameters, nor do they constitute promises of future returns or performance.
+> 3. **Parameter Finalization:** Due to the inherent unpredictability of market conditions, the aforementioned parameters will be finalized and announced prior to mainnet launch following thorough testnet validation, community discussion, and governance processes.
+> 4. **Forward-Looking Statements:** This white paper contains forward-looking statements regarding future plans, technical roadmap, and expected outcomes. These statements are based on current plans and expectations and may be adjusted due to changes in technology, market, or regulatory environments. They do not constitute guarantees of future results.
+> 5. **Not Investment Advice:** This white paper is for informational purposes only and does not constitute investment advice, an offer, or a solicitation of any kind. Cryptocurrency and derivatives trading involves significant risk. Please participate cautiously based on your own risk tolerance.
 
 ---
 
@@ -38,7 +50,7 @@
    - 5.4 [Dynamic Spread Algorithm (AI-Enhanced)](#54-dynamic-spread-algorithm-ai-enhanced)
    - 5.5 [Liquidation Engine (AI Predictive Liquidation)](#55-liquidation-engine-ai-predictive-liquidation)
    - 5.6 [Full-Category Asset Integration Framework](#56-full-category-asset-integration-framework)
-6. [Unified Vault System](#6-unified-vault-system)
+6. [Vault System](#6-vault-system)
    - 6.1 [PLP Tokenized Liquidity Certificates](#61-plp-tokenized-liquidity-certificates)
    - 6.2 [AI-Driven Dynamic Asset Allocation](#62-ai-driven-dynamic-asset-allocation)
    - 6.3 [Vault Risk Exposure Control](#63-vault-risk-exposure-control)
@@ -54,7 +66,7 @@
    - 8.3 [$esPPX Escrowed Incentive Token](#83-esppx-escrowed-incentive-token)
    - 8.4 [Ecosystem Security Fund Mechanism: Mathematical Model](#84-ecosystem-security-fund-mechanism-mathematical-model)
    - 8.5 [Staking and Unlock State Machine](#85-staking-and-unlock-state-machine)
-   - 8.6 [Deflation and Value Capture](#86-deflation-and-value-capture)
+   - 8.6 [Buyback and Value Capture](#86-buyback-and-value-capture)
    - 8.7 [Game Theory Analysis and Nash Equilibrium](#87-game-theory-analysis-and-nash-equilibrium)
 9. [Zone System and Decentralized Community Governance](#9-zone-system-and-decentralized-community-governance)
 10. [Technical Roadmap](#10-technical-roadmap)
@@ -79,7 +91,7 @@ PerpX Finance proposes the **TradeFi (Trade + DeFi + AI)** paradigm, dedicated t
 | Multi-Chain Failover Switching     | Primary/backup chain auto-detection and hot switching      | System availability 99.999%                                              |
 | **AI Intelligence Engine**    |                                                            |                                                                          |
 | AI Market Prediction               | Transformer time-series model + multi-factor feature engineering | Volatility prediction accuracy >78%, early warning for extreme markets   |
-| AI Risk Control Engine             | Isolation Forest anomaly detection + LSTM liquidation prediction | Anomalous trade identification rate >95%, liquidation warning 15 min ahead |
+| AI Risk Control Engine             | Isolation Forest anomaly detection + LSTM liquidation prediction | Anomalous trade identification rate >95%, minute-level liquidation pre-warning |
 | AI Resource Allocation             | Deep reinforcement learning (PPO)-driven vault allocation  | 2-4% increase in annualized returns, 40% improvement in Sharpe ratio    |
 | AI Routing Optimization            | Multi-dimensional cost function + graph neural network path planning | 85% reduction in overall settlement costs                                |
 | AI Dynamic Pricing                 | Gradient boosting model-driven spread + fee optimization   | 60% improvement in spread precision, 15-25% increase in LP returns      |
@@ -165,13 +177,13 @@ The core of the PerpX Finance perpetual economy operates through three coordinat
 
 **Three-Element Protocol Value Loop:**
 
-![Three-Element Protocol Value Loop](../assets/whitepaper-images/01_three_element_protocol_loop.png)
+![Three-Element Protocol Value Loop](whitepaper-images/01_three_element_protocol_loop.png)
 
 ### 3.2 Five-Layer Protocol Stack
 
 PerpX adopts a layered, decoupled five-layer protocol stack architecture, where each layer evolves independently and composes vertically:
 
-![Five-Layer Protocol Stack](../assets/whitepaper-images/02_five_layer_protocol_stack.png)
+![Five-Layer Protocol Stack](whitepaper-images/02_five_layer_protocol_stack.png)
 
 > **AI Intelligence Layer** is an intelligent engine that cuts across all protocol layers. It does not exist as an independent layer but operates in a "Sidecar" mode, providing prediction, optimization, and decision support to each layer. The hybrid architecture of off-chain AI inference + on-chain result verification ensures the unity of intelligence and determinism.
 
@@ -258,7 +270,7 @@ Where:
 - $\theta \in [0,1]$ is the on-chain asset weight
 - $R_{\text{DeFi}}$ is the DeFi pool annualized yield
 - $R_{\text{RWA}}$ is the RWA pool annualized yield
-- $\lambda$ is the risk aversion coefficient (set by governance vote, initial value $\lambda = 0.5$)
+- $\lambda$ is the risk aversion coefficient (set by governance vote, initial value determined based on backtesting, subsequently adjusted by community governance)
 - $\sigma^2$ is the portfolio volatility
 
 **Optimal Solution (First-Order Condition):**
@@ -370,7 +382,7 @@ The core limitation of traditional DeFi protocols lies in "static parameters" �
 
 PerpX Finance proposes a hybrid architecture of **"On-chain Determinism × Off-chain Intelligence"**:
 
-![On-chain Determinism × Off-chain Intelligence Architecture](../assets/whitepaper-images/03_ai_architecture.png)
+![On-chain Determinism × Off-chain Intelligence Architecture](whitepaper-images/03_ai_architecture.png)
 
 **Core Design Principles:**
 
@@ -482,7 +494,7 @@ class PerpXMarketPredictor:
 
 #### 4.2.3 Training and Update Mechanism
 
-![AI Model Training Pipeline](../assets/whitepaper-images/04_ai_model_pipeline.png)
+![AI Model Training Pipeline](whitepaper-images/04_ai_model_pipeline.png)
 
 ### 4.3 AI Risk Control Engine: Real-time Anomaly Detection and Predictive Liquidation
 
@@ -563,7 +575,7 @@ Traditional liquidation engines are reactive — they only trigger liquidation a
 ```python
 class PredictiveLiquidationEngine:
     """
-    LSTM sequence model predicting liquidation probability within the next 15 minutes
+    LSTM sequence model predicting liquidation probability at the minute level
     Issues early warnings to reduce bad debt losses
     """
     def __init__(self):
@@ -578,7 +590,7 @@ class PredictiveLiquidationEngine:
             ],
             hidden_dim=128,
             num_layers=3,
-            output='liquidation_probability_15min'
+            output='liquidation_probability_minute_level'
         )
 
     def scan_positions(self) -> List[LiquidationWarning]:
@@ -616,7 +628,7 @@ class PredictiveLiquidationEngine:
 
 | Metric                   | Traditional Reactive Liquidation | PerpX AI Predictive Liquidation     |
 | ------------------------ | -------------------------------- | ----------------------------------- |
-| Liquidation Response Time| Triggered after on-chain confirmation | 15-minute advance warning        |
+| Liquidation Response Time| Triggered after on-chain confirmation | Minute-level advance warning        |
 | Bad Debt Rate            | 5-8%                             | <1% (target)                        |
 | Insurance Fund Consumption | High                           | Reduced by 60-80%                   |
 | User Experience          | Sudden liquidation, no warning   | Tiered warnings + automatic risk mitigation |
@@ -669,7 +681,9 @@ class VaultAllocationAgent:
 
     def decide_allocation(self, current_state) -> AllocationDecision:
         """
-        Make allocation adjustment decisions every 15 minutes
+        The decision cycle is shorter than the prediction window (1-4 hours) to enable timely response
+        to signal changes, with single-adjustment amplitude constraints preventing excessive position churn.
+        Decision frequency is set by governance.
         """
         state_vector = self.encode_state(current_state)
         action = self.agent.predict(state_vector)
@@ -857,7 +871,7 @@ PerpX provides users with an AI Agent trading assistant based on Large Language 
 
 **Architecture Design:**
 
-![AI Agent Trading Assistant Architecture](../assets/whitepaper-images/05_ai_agent_architecture.png)
+![AI Agent Trading Assistant Architecture](whitepaper-images/05_ai_agent_architecture.png)
 
 **Feature Matrix:**
 
@@ -1118,6 +1132,8 @@ function openPosition(
 
 The funding rate is the core mechanism for anchoring perpetual contract prices to the underlying asset price. PerpX employs an adaptive funding rate model based on open interest (OI) skew:
 
+> **Note:** The funding rate module will be implemented in a future version. The following describes the mechanism design; the specific launch timeline will be determined by community governance.
+
 **Funding Rate Formula:**
 
 $$
@@ -1127,8 +1143,8 @@ $$
 Where:
 
 - $OI_{\text{long}}$, $OI_{\text{short}}$ are the total open interest for long and short positions respectively
-- $\kappa$ is the sensitivity coefficient (initial value $\kappa = 0.01$, adjustable via governance)
-- $F_{\max}$ is the maximum funding rate cap per period (initial value $0.01 = 1\%$)
+- $\kappa_0$ is the initial value, adjustable through governance
+- $F_{\max}$ is the maximum funding rate cap per period (initially set by governance)
 
 **Funding Rate Settlement Cycle:** Settled every 8 hours (UTC 0:00, 8:00, 16:00).
 
@@ -1158,7 +1174,7 @@ $$
 
 Where:
 
-- $S_{\text{base}}$ is the base spread (crypto majors 0.01%, US equities 0.05%, forex 0.02%)
+- $S_{\text{base}}$ is the base spread (set by asset category tiers, specific values determined by governance)
 - $\sigma$ is the underlying asset's realized volatility over the past 1 hour
 - $D$ is the inverse of liquidity depth ($D = 1 / \text{Vault Depth}$); greater depth means smaller spread
 - $I$ is the open interest imbalance ratio $|OI_{\text{long}} - OI_{\text{short}}| / (OI_{\text{long}} + OI_{\text{short}})$
@@ -1169,10 +1185,10 @@ Where:
 The AI pricing engine (see Section 4.6 for details) builds upon the base formula by introducing high-dimensional features such as **AI-predicted volatility**, **order flow toxicity analysis**, and **cross-asset correlations** to output more precise spread recommendations:
 
 $$
-S_{\text{final}} = \text{clamp}\left(S_{\text{AI}}, \quad S_{\text{base\_formula}} \times 0.5, \quad S_{\text{base\_formula}} \times 5.0\right)
+S_{\text{final}} = \text{clamp}\left(S_{\text{AI}}, \quad S_{\min}, \quad S_{\max}\right)
 $$
 
-AI output is bounded by the upper and lower limits of the base formula. When the AI system is unavailable, it automatically falls back to the base formula.
+AI output is constrained by $[S_{\min}, S_{\max}]$ hard bounds (range set by governance); when the AI system is unavailable, it automatically falls back to the base formula.
 
 **Design Objectives:**
 
@@ -1195,8 +1211,8 @@ $$
 
 | Liquidation Level  | Trigger Condition                              | Execution Action                                  |
 | ------------------ | ---------------------------------------------- | ------------------------------------------------- |
-| Warning            | Margin ratio < Initial margin rate × 50%       | On-chain event notification, frontend popup alert |
-| Partial Liquidation| Margin ratio < Maintenance margin rate × 150%  | Reduce position to safe level (50% position reduction) |
+| Warning            | Margin ratio < Initial margin rate × $\alpha_{\text{warn}}$       | On-chain event notification, frontend popup alert |
+| Partial Liquidation| Margin ratio < Maintenance margin rate × $\alpha_{\text{partial}}$  | Reduce to safe level (reduction ratio determined by protocol parameters) |
 | Full Liquidation   | Margin ratio < Maintenance margin rate          | Close entire position, remaining margin goes to liquidator |
 | Bad Debt Handling   | Margin + PnL < 0                               | Vault insurance fund covers the loss             |
 
@@ -1204,7 +1220,7 @@ $$
 
 Liquidators (Keeper / Liquidator Bots) that successfully execute liquidations receive:
 
-- A fixed percentage (initially 5%) of the liquidated position's remaining margin as a liquidation reward
+- A fixed percentage (ratio set by governance) of the liquidated position's remaining margin as a liquidation reward
 - Gas fee compensation
 
 **Liquidation Contract Core Logic:**
@@ -1313,9 +1329,13 @@ function approveAsset(uint proposalId) external onlyGovernance {
 | Tier 3    | Mid-cap crypto, Silver, Forex                  | 10-20x       | 15%                | 2.0x              |
 | Tier 4    | Small-cap crypto, Commodities, Indices         | 5-10x        | 10%                | 3.0x              |
 
+Asset risk classification and the specific parameters for each tier are determined by community governance vote and can be dynamically adjusted based on market conditions.
+
 ---
 
-## 6. Unified Vault System
+## 6. Vault System
+
+PerpX adopts a **grouped vault architecture**: liquidity is allocated to one or more independent vaults based on asset category and risk profile. Assets of the same category share vault liquidity to ensure depth, while different asset categories achieve risk isolation through vault separation. The grouping strategy and number of vaults are determined by community governance and can be dynamically adjusted as the market evolves.
 
 ### 6.1 PLP Tokenized Liquidity Certificate
 
@@ -1406,7 +1426,7 @@ class BaselineAllocator:
 
 The AI resource allocation Agent (see Section 4.4) introduces market state prediction, cross-asset correlation analysis, and macro factors on top of the baseline, achieving **forward-looking allocation** — making decisions based not only on current yields but also on predicted yields and risk levels for the next 1-4 hours.
 
-![AI-Enhanced Allocation Decision Flow](../assets/whitepaper-images/10_allocation_decision_flow.png)
+![AI-Enhanced Allocation Decision Flow](whitepaper-images/10_allocation_decision_flow.png)
 
 When the AI system is unavailable, the system automatically falls back to the baseline engine.
 
@@ -1430,7 +1450,7 @@ When extreme market volatility causes asset weights to deviate from targets, the
 
 **TVM (Time Value of Money) Capture Flow:**
 
-![TVM Capture Flow](../assets/whitepaper-images/06_tvm_capture_flow.png)
+![TVM Capture Flow](whitepaper-images/06_tvm_capture_flow.png)
 
 ---
 
@@ -1440,12 +1460,12 @@ When extreme market volatility causes asset weights to deviate from targets, the
 
 PerpX builds a **five-layer defense system** from individual positions to the system level, with the AI layer serving as a cross-cutting prediction and detection engine:
 
-![Five-Layer Risk Control Defense System](../assets/whitepaper-images/07_risk_control_layers.png)
+![Five-Layer Risk Control Defense System](whitepaper-images/07_risk_control_layers.png)
 
 **AI Risk Control Layer Responsibilities (see Section 4.3):**
 
 - **Real-time anomaly detection**: Three-layer model (statistical rules + Isolation Forest + Autoencoder) running in parallel to detect price manipulation, flash loan attacks, and whale activity
-- **Predictive liquidation**: LSTM model predicts liquidation probability 15 minutes in advance, triggering tiered alerts
+- **Predictive liquidation**: LSTM model predicts liquidation probability at the minute level, triggering tiered alerts
 - **Cascading risk assessment**: Analyzes global position correlations, identifies cascading liquidation risks, and proactively diversifies risk exposure
 - **Adaptive thresholds**: Dynamically adjusts trigger thresholds for each risk control layer based on market conditions
 
@@ -1537,8 +1557,8 @@ Core design principles of PerpX token economics:
 
 | Category | Share | Amount | Release Rules |
 | -------- | ----- | ------ | ------------- |
-| Community | 60% | 60,000,000 | Quarterly linear release for trading rewards, LP incentives, referral system |
-| Ecosystem fund | 30% | 30,000,000 | Quarterly linear release for ecosystem development and strategic partnerships |
+| Community | 60% | 60,000,000 | Used for trading rewards, LP incentives, and referral system |
+| Ecosystem fund | 30% | 30,000,000 | Used for ecosystem development and strategic partnerships |
 | Team | 5% | 5,000,000 | 1-year lock followed by 6-month linear release |
 | Initial liquidity | 5% | 5,000,000 | 1% released at TGE, then +1% released for every 5% price increase |
 
@@ -1562,10 +1582,14 @@ esPPX is not freely transferable but carries full PPX voting rights within the p
 **Unlock Conversion Formula:**
 
 $$
-\boxed{\text{esPPX} + \text{Ecosystem Security Fund (USDC)} = \text{PPX}}
+\boxed{\text{esPPX} + \text{Ecosystem Security Fund} = \text{PPX}}
 $$
 
 The Ecosystem Security Fund fee equals the floor price $F$, with calculation details in Section 8.4.
+
+**Payment Methods:** The Ecosystem Security Fund supports payment in USDC or PPX. Users may pay directly or authorize third-party service providers (market makers, Bundlers, etc.) to complete the payment and unlock process on their behalf.
+
+**Personalized Pricing:** Each user's floor price $F$ is dynamically calculated based on their individual behavioral characteristics (holding duration, activity level, historical unlock volume, etc.). Different users may face different unlock costs at the same point in time. Specific personalization factors are detailed in Section 8.4.
 
 ### 8.4 Ecosystem Security Fund Mechanism: Mathematical Model
 
@@ -1580,41 +1604,29 @@ $$
 The fixed floor price increases in tiers as PPX circulating supply grows:
 
 $$
-F_b = 0.001 \times \left\lceil \frac{\text{PPX Circulating Supply}}{1{,}000{,}000} \right\rceil \quad (\text{USDC})
+F_b = C_b \times \left\lceil \frac{\text{PPX Circulating Supply}}{N_{\text{period}}} \right\rceil
 $$
 
-| PPX Circulating Supply | Period | Fixed Floor Price $F_b$ |
-| ---------------------- | ------ | ----------------------- |
-| 0 ~ 1,000,000 | 1 | 0.001 U |
-| 1,000,001 ~ 2,000,000 | 2 | 0.002 U |
-| ... | ... | ... |
-| 49,000,001 ~ 50,000,000 | 50 | 0.050 U |
-| 99,000,001 ~ 100,000,000 | 100 | 0.100 U |
+Where:
 
-There are 100 periods in total. When Phase 1 is fully released, the floor price is approximately **0.1 U**, providing a deterministic minimum value anchor for PPX.
+- $C_b$: per-period floor price increment (fixed constant, set by governance)
+- $N_{\text{period}}$: period circulation step size (fixed constant, set by governance)
+
+The fixed floor price increases in tiers as PPX circulating supply grows, providing a deterministic minimum value anchor for PPX.
 
 #### 8.4.2 Floating Floor Price $F_f$
 
-The floating floor price activates after the protocol matures and is dynamically linked to market supply and demand:
-
-**Activation Conditions (any one met):**
-
-- PPX circulating supply > 10,000,000 tokens
-- Daily protocol fee revenue > 10,000 USDC
+The floating floor price is effective at all times and is dynamically linked to market supply and demand:
 
 **Floating Floor Price Formula:**
 
 $$
-F_f = P_b \times r \times Z \times P
+F_f = P_{\text{ref}} \times r \times Z \times P
 $$
 
 Each variable is defined as follows:
 
-**$P_b$ (Central Bank Buyback Price):** Weighted average execution price of the most recent 5 transactions.
-
-$$
-P_b = \begin{cases} \frac{1}{n}\sum_{i=1}^{n} p_i & \text{if } n < 5 \\ \frac{1}{5}\sum_{i=1}^{5} p_i & \text{if } n \geq 5 \\ 0 & \text{if } n = 0 \end{cases}
-$$
+**$P_{\text{ref}}$ (Protocol Reference Price):** Dynamically generated by the protocol's multi-factor pricing model, comprehensively considering on-chain trading data, protocol state (vault depth, circulation, protocol revenue, etc.), and market environment factors. The reference price adjusts along a preset dynamic curve with parameters set by governance. $P_{\text{ref}}$ is designed to be resistant to manipulation by any single trading action and cannot be precisely predicted in advance, while ensuring it reasonably reflects the intrinsic protocol value of PPX.
 
 **$r$ (Floating Coefficient):** A nonlinear function based on the ratio of actual unlock volume to recommended unlock volume:
 
@@ -1632,7 +1644,7 @@ Parameter descriptions:
 **Recommended Unlock Volume $Q_s$ Calculation:**
 
 $$
-Q_s = \frac{\min\left(0.6 \times I_{\text{prev}}, \quad 0.02 \times T_{\text{treasury}}\right)}{P_b}
+Q_s = \frac{\min\left(0.6 \times I_{\text{prev}}, \quad 0.02 \times T_{\text{treasury}}\right)}{P_{\text{ref}}}
 $$
 
 - $0.6 \times I_{\text{prev}}$: 60% of the previous day's protocol revenue
@@ -1654,7 +1666,7 @@ This S-curve design ensures:
 
 - When unlocking is reasonable ($Q_a \leq Q_s$), the floating floor price is 0, and users only need to pay the fixed floor price
 - When unlocking exceeds the recommended amount, the floating floor price rises nonlinearly, automatically suppressing sell pressure and protecting treasury security
-- In extreme cases, the floating floor price approaches $P_b$ (market price), making excess unlocking uneconomical
+- In extreme cases, the floating floor price approaches $P_{\text{ref}}$ (market price), making excess unlocking uneconomical
 
 **$Z$ (Zone Difficulty Coefficient):**
 
@@ -1664,17 +1676,17 @@ $$
 
 - $P_n$: Cumulative unlock volume within the Zone
 - $P_t$: Total PPX circulating supply
-- Default value $Z = 1$; the more unlocking within a Zone, the higher the subsequent unlock cost
+- When no unlocks have occurred in the Zone ($P_n = 0$), $Z = 1$; the more unlocking within a Zone, the higher the subsequent unlock cost
 
 **$P$ (Personal Activity Coefficient):**
 
-Related to the individual wallet's cumulative unlock volume and daily unlock proportion, default value $P = 1$.
+Related to the individual wallet's cumulative unlock volume and daily unlock proportion, default value $P = 1$. The specific calculation model will be published in the protocol technical documentation.
 
 ### 8.5 Staking and Unlock State Machine
 
 #### PPX Staking State Machine
 
-![PPX Staking State Machine](../assets/whitepaper-images/08_staking_state_machine.png)
+![PPX Staking State Machine](whitepaper-images/08_staking_state_machine.png)
 
 **Staking Reward Calculation:**
 
@@ -1695,41 +1707,28 @@ Early exit penalty:
 | UTC Time | Phase | Allowed Operations |
 | -------- | ----- | ------------------ |
 | 0:00 - 23:00 | Free period | Freely deposit esPPX to unlock queue + freely withdraw |
-| 23:00 - 0:00 | Whitelist period | Only whitelisted addresses can deposit/withdraw; regular users cannot operate |
-| 0:00 (next day) | Settlement & claim | System completes settlement; users pay USDC (Ecosystem Security Fund) to claim PPX |
+| 23:00 - 0:00 | Settlement Calculation Period | All users cannot deposit or withdraw; system performs settlement calculation |
+| 0:00 (next day) | Settlement & claim | System completes settlement; users pay Ecosystem Security Fund (USDC or PPX) to claim PPX |
 
 **Key Rules:**
 
 - Before 23:00, users can freely deposit and withdraw, flexibly managing the amount of esPPX in the unlock queue;
-- 23:00 - 0:00 is the whitelist window; only authorized addresses can operate, preventing abnormal operations before settlement;
-- After settlement completes at 0:00, users can immediately pay the corresponding USDC (Ecosystem Security Fund) to claim unlocked PPX;
+- 23:00 - 0:00 is the settlement calculation period where no user operations are permitted; the system performs settlement calculation;
+- After settlement completes at 0:00, users can immediately pay the corresponding Ecosystem Security Fund (USDC or PPX) to claim unlocked PPX;
 - If users do not claim, the esPPX will be permanently locked in the unlock contract and cannot be returned. Users can claim multiple days' accumulated unlocked PPX in a single transaction at any time.
 
-### 8.6 Deflation and Value Capture
+### 8.6 Buyback and Value Capture
 
-**Fee Buyback and Burn Mechanism:**
+**Fee Buyback Mechanism:**
 
-![Protocol Fee Revenue Distribution](../assets/whitepaper-images/09_fee_distribution.png)
+![Protocol Fee Revenue Distribution](whitepaper-images/09_fee_distribution.png)
 
-**Dynamic Deflation Rate:**
+Protocol fee revenue is used for PPX buyback. The disposal method of bought-back PPX is decided by community governance, including but not limited to:
 
-The buyback-and-burn ratio is dynamically adjusted based on trading volume:
+- **Buy Back & Burn (BBB):** Permanently burn bought-back PPX, creating deflation and increasing scarcity
+- **Buy Back & Distribute (BBD):** Redistribute bought-back PPX as ecosystem rewards to incentivize participation
 
-$$
-\text{Burn Rate} = \text{Base Rate} + \alpha \times \ln\left(\frac{V_{\text{current}}}{V_{\text{baseline}}}\right)
-$$
-
-The more active trading is, the stronger the deflationary force, creating a positive feedback loop of **"the more it's used, the scarcer it becomes."**
-
-**Long-Term Deflation Model:**
-
-Assuming average daily trading volume $V$, fee rate $f$, buyback-and-burn ratio $b$:
-
-$$
-\text{Annual Burn Volume} = V \times f \times b \times 365
-$$
-
-As trading volume grows, the burn rate accelerates, eventually pushing the circulating supply into a net deflationary state.
+Both methods may coexist or alternate; the specific ratios and methods are determined by governance vote. This flexible mechanism allows the community to dynamically choose the optimal value capture strategy based on the protocol's stage and market conditions.
 
 ### 8.7 Game Theory Analysis and Nash Equilibrium
 
@@ -1884,4 +1883,14 @@ The ultimate vision of PerpX Finance is to build a **self-evolving on-chain perp
 
 ---
 
-**Disclaimer:** This whitepaper is for informational purposes only and does not constitute investment advice. Cryptocurrency and derivatives trading involves high risk; please participate cautiously based on your own risk tolerance. Specific protocol parameters may be adjusted according to governance decisions.
+## Disclaimer
+
+**General Disclaimer:** This white paper is for informational purposes only and does not constitute investment advice, an offer, or a solicitation of any kind. Cryptocurrency and derivatives trading involves significant risks, including but not limited to market volatility risk, liquidity risk, smart contract risk, and regulatory risk. Please participate cautiously based on your own risk tolerance.
+
+**Illustrative Data:** All figures related to pricing, fee rates, funding rates, leverage multiples, yield rates, AI model performance metrics (such as accuracy rates, improvement percentages, etc.), and economic model parameters appearing in this white paper are illustrative only for technical explanation purposes. They do not represent finalized mainnet parameters, nor do they constitute guarantees of future returns or performance. All parameters will be finalized prior to mainnet launch following testnet validation, community discussion, and governance processes.
+
+**Forward-Looking Statements:** This white paper contains forward-looking statements regarding the future development, technical roadmap, product features, and expected outcomes of PerpX Finance. These statements are based on current plans, estimates, and expectations and are subject to various known and unknown risk factors. Actual results may differ materially from forward-looking statements. The PerpX Finance team assumes no obligation to update forward-looking statements.
+
+**Parameter Adjustments:** Specific protocol parameters (including but not limited to fee rates, leverage caps, asset weights, and token release schedules) may be adjusted based on market conditions, community feedback, and governance decisions.
+
+**Compliance Notice:** This white paper is not directed at residents of any jurisdiction where such activities are prohibited. Users are responsible for ensuring that their participation complies with applicable local laws and regulations.
