@@ -16,9 +16,9 @@ We bring traditional finance full-category assets — cryptocurrencies, US equit
 
 | Protocol Layer | Name | Role |
 | --- | --- | --- |
-| **Perp Trade** | Trading Core | Perpetual contract trading, full-category asset matching, position management |
-| **Perp DeFi** | Revenue Engine | Unified liquidity vault, revenue aggregation, TVM capture |
-| **Perp Pay** | Settlement Network | Fiat on/off-ramp, cross-border settlement, payment routing |
+| **Perpetual Trade** | Trading Core | Perpetual contract trading, full-category asset matching, position management |
+| **Perpetual DeFi** | Revenue Engine | Unified liquidity vault, revenue aggregation, TVM capture |
+| **Perpetual Pay** | Settlement Network | Fiat on/off-ramp, cross-border settlement, payment routing |
 
 ## Why PerpX?
 

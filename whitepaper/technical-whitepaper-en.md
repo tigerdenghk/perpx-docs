@@ -43,7 +43,7 @@
    - 4.6 [AI Pricing Engine: Intelligent Spread and Fee Optimization](#46-ai-pricing-engine-intelligent-spread-and-fee-optimization)
    - 4.7 [AI Agent Trading Assistant](#47-ai-agent-trading-assistant)
    - 4.8 [On-Chain Verification and Decentralized Inference](#48-on-chain-verification-and-decentralized-inference)
-5. [Perp DEX Trading Engine](#5-perp-dex-trading-engine)
+5. [Perpetual DEX Trading Engine](#5-perpetual-dex-trading-engine)
    - 5.1 [Oracle Aggregated Pricing System](#51-oracle-aggregated-pricing-system)
    - 5.2 [Position Management and Margin Calculation](#52-position-management-and-margin-calculation)
    - 5.3 [Funding Rate Model](#53-funding-rate-model)
@@ -167,23 +167,23 @@ $$
 
 ### 3.1 System Overview: Perpetual Economy Three-Element Protocol
 
-The core of the PerpX Finance perpetual economy operates through three coordinated protocol layers. The current phase focuses on Perp Trade as the core driver, with trading being the driving force behind the economy's value accumulation and perpetual operation:
+The core of the PerpX Finance perpetual economy operates through three coordinated protocol layers. The current phase focuses on Perpetual Trade as the core driver, with trading being the driving force behind the economy's value accumulation and perpetual operation:
 
 | Protocol Layer         | Name              | Core Responsibilities                                         | Technical Features                                  | Positioning                                                                                    |
 | ---------------------- | ----------------- | ------------------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| **Perp Trade** | Trading Core      | Perpetual contract trading, full-category asset matching, position management | Oracle aggregated pricing, dynamic fees, real-time liquidation | Core engine—trading generates fees, funding rates, and other revenue, driving the perpetual growth of the economy |
-| **Perp DeFi**  | Revenue Engine    | Unified liquidity vault, revenue aggregation, TVM capture     | Dynamic asset allocation, hybrid revenue pools, compound interest calculation | Value hub—aggregates on-chain DeFi yields and off-chain RWA returns, unlocking the time value of capital |
-| **Perp Pay**   | Settlement Network | Connecting the real world: fiat on/off-ramp, cross-border settlement, payment routing | State Channel, AI routing, batch settlement         | Infrastructure—connecting the economy to the real world                                       |
+| **Perpetual Trade** | Trading Core      | Perpetual contract trading, full-category asset matching, position management | Oracle aggregated pricing, dynamic fees, real-time liquidation | Core engine—trading generates fees, funding rates, and other revenue, driving the perpetual growth of the economy |
+| **Perpetual DeFi**  | Revenue Engine    | Unified liquidity vault, revenue aggregation, TVM capture     | Dynamic asset allocation, hybrid revenue pools, compound interest calculation | Value hub—aggregates on-chain DeFi yields and off-chain RWA returns, unlocking the time value of capital |
+| **Perpetual Pay**   | Settlement Network | Connecting the real world: fiat on/off-ramp, cross-border settlement, payment routing | State Channel, AI routing, batch settlement         | Infrastructure—connecting the economy to the real world                                       |
 
 **Three-Element Protocol Value Loop:**
 
-![Three-Element Protocol Value Loop](whitepaper-images/01_three_element_protocol_loop.png)
+![Three-Element Protocol Value Loop](../assets/whitepaper-images/01_three_element_protocol_loop.png)
 
 ### 3.2 Five-Layer Protocol Stack
 
 PerpX adopts a layered, decoupled five-layer protocol stack architecture, where each layer evolves independently and composes vertically:
 
-![Five-Layer Protocol Stack](whitepaper-images/02_five_layer_protocol_stack.png)
+![Five-Layer Protocol Stack](../assets/whitepaper-images/02_five_layer_protocol_stack.png)
 
 > **AI Intelligence Layer** is an intelligent engine that cuts across all protocol layers. It does not exist as an independent layer but operates in a "Sidecar" mode, providing prediction, optimization, and decision support to each layer. The hybrid architecture of off-chain AI inference + on-chain result verification ensures the unity of intelligence and determinism.
 
@@ -295,7 +295,7 @@ The Trading Layer is the core product layer of PerpX. See Chapter 4 for the comp
 
 ### 3.6 Payment Layer: State Channel Settlement Network
 
-Perp Pay uses State Channel technology to achieve high-frequency off-chain matching, providing the economy with a settlement channel connecting the real world:
+Perpetual Pay uses State Channel technology to achieve high-frequency off-chain matching, providing the economy with a settlement channel connecting the real world:
 
 **Three-Tier Optimization Architecture:**
 
@@ -382,7 +382,7 @@ The core limitation of traditional DeFi protocols lies in "static parameters" �
 
 PerpX Finance proposes a hybrid architecture of **"On-chain Determinism × Off-chain Intelligence"**:
 
-![On-chain Determinism × Off-chain Intelligence Architecture](whitepaper-images/03_ai_architecture.png)
+![On-chain Determinism × Off-chain Intelligence Architecture](../assets/whitepaper-images/03_ai_architecture.png)
 
 **Core Design Principles:**
 
@@ -494,7 +494,7 @@ class PerpXMarketPredictor:
 
 #### 4.2.3 Training and Update Mechanism
 
-![AI Model Training Pipeline](whitepaper-images/04_ai_model_pipeline.png)
+![AI Model Training Pipeline](../assets/whitepaper-images/04_ai_model_pipeline.png)
 
 ### 4.3 AI Risk Control Engine: Real-time Anomaly Detection and Predictive Liquidation
 
@@ -871,7 +871,7 @@ PerpX provides users with an AI Agent trading assistant based on Large Language 
 
 **Architecture Design:**
 
-![AI Agent Trading Assistant Architecture](whitepaper-images/05_ai_agent_architecture.png)
+![AI Agent Trading Assistant Architecture](../assets/whitepaper-images/05_ai_agent_architecture.png)
 
 **Feature Matrix:**
 
@@ -954,7 +954,7 @@ contract AIOracle {
 
 ---
 
-## 5. Perp DEX Trading Engine
+## 5. Perpetual DEX Trading Engine
 
 ### 5.1 Oracle Aggregated Pricing System
 
@@ -1426,7 +1426,7 @@ class BaselineAllocator:
 
 The AI resource allocation Agent (see Section 4.4) introduces market state prediction, cross-asset correlation analysis, and macro factors on top of the baseline, achieving **forward-looking allocation** — making decisions based not only on current yields but also on predicted yields and risk levels for the next 1-4 hours.
 
-![AI-Enhanced Allocation Decision Flow](whitepaper-images/10_allocation_decision_flow.png)
+![AI-Enhanced Allocation Decision Flow](../assets/whitepaper-images/10_allocation_decision_flow.png)
 
 When the AI system is unavailable, the system automatically falls back to the baseline engine.
 
@@ -1450,7 +1450,7 @@ When extreme market volatility causes asset weights to deviate from targets, the
 
 **TVM (Time Value of Money) Capture Flow:**
 
-![TVM Capture Flow](whitepaper-images/06_tvm_capture_flow.png)
+![TVM Capture Flow](../assets/whitepaper-images/06_tvm_capture_flow.png)
 
 ---
 
@@ -1460,7 +1460,7 @@ When extreme market volatility causes asset weights to deviate from targets, the
 
 PerpX builds a **five-layer defense system** from individual positions to the system level, with the AI layer serving as a cross-cutting prediction and detection engine:
 
-![Five-Layer Risk Control Defense System](whitepaper-images/07_risk_control_layers.png)
+![Five-Layer Risk Control Defense System](../assets/whitepaper-images/07_risk_control_layers.png)
 
 **AI Risk Control Layer Responsibilities (see Section 4.3):**
 
@@ -1686,7 +1686,7 @@ Related to the individual wallet's cumulative unlock volume and daily unlock pro
 
 #### PPX Staking State Machine
 
-![PPX Staking State Machine](whitepaper-images/08_staking_state_machine.png)
+![PPX Staking State Machine](../assets/whitepaper-images/08_staking_state_machine.png)
 
 **Staking Reward Calculation:**
 
@@ -1721,7 +1721,7 @@ Early exit penalty:
 
 **Fee Buyback Mechanism:**
 
-![Protocol Fee Revenue Distribution](whitepaper-images/09_fee_distribution.png)
+![Protocol Fee Revenue Distribution](../assets/whitepaper-images/09_fee_distribution.png)
 
 Protocol fee revenue is used for PPX buyback. The disposal method of bought-back PPX is decided by community governance, including but not limited to:
 
@@ -1798,7 +1798,7 @@ Referral ratios are jointly determined by Zone and global parameters, forming a 
 
 ### Phase 1: Trading Foundation (Q1-Q2 2026)
 
-- Perp DEX launches on Base Chain, supporting cryptocurrency perpetual contracts (BTC, ETH, SOL, etc.)
+- Perpetual DEX launches on Base Chain, supporting cryptocurrency perpetual contracts (BTC, ETH, SOL, etc.)
 - Unified vault layer launches with PLP minting/redemption
 - PPX/esPPX token economics system deployment
 - Pyth + Chainlink dual-source oracle integration
@@ -1825,7 +1825,7 @@ Referral ratios are jointly determined by Zone and global parameters, forming a 
 
 **Ecosystem Deepening:**
 
-- Perp Pay fiat on/off-ramp channel goes live
+- Perpetual Pay fiat on/off-ramp channel goes live
 - Tokenized spot trading protocol R&D and launch
 - Cross-chain deployment (Arbitrum, Solana, BSC, and other L2/L1 chains)
 - Full DAO governance launch with community-driven proposals and voting
@@ -1844,7 +1844,7 @@ Referral ratios are jointly determined by Zone and global parameters, forming a 
 
 - Advanced derivatives (options, structured products) launch
 - Zone global network expansion and deep governance
-- Proprietary high-performance trading chain Perp Chain (appchain / L3)
+- Proprietary high-performance trading chain Perpetual Chain (appchain / L3)
 - Comprehensive global compliance framework, integrating more jurisdictions
 - Full-stack AI autonomy: RL auto-execution, decentralized AI Oracle, adaptive protocol governance
 - Decentralized AI inference: zkML on-chain verification, decentralized GPU network, community AI model marketplace

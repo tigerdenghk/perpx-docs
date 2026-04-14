@@ -34,7 +34,7 @@ You'll need **USDC** on Base Chain to trade or provide liquidity.
 
 ## What Can You Do?
 
-### Trade (Perp DEX)
+### Trade (Perpetual DEX)
 - Open long/short perpetual positions on supported assets
 - Adjustable leverage
 - Deposit USDC as margin — no need to hold the underlying asset

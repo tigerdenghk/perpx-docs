@@ -20,7 +20,7 @@
 
 ## Name
 
-**PerpX Finance** (also written as **PerpX**)
+**PerpX Finance** (also written as **PPX**)
 
 ## Tagline
 
